@@ -141,19 +141,19 @@ body[data-section]{background:var(--tint);transition:background-color .3s ease}
 .pdv-to-music{--to:#9a6a00;--to-hover:#7a5400}
 /* Page transitions. Kept short on purpose: browsers ignore clicks while a transition is playing. */
 @view-transition{navigation:auto}
-::view-transition-old(root),::view-transition-new(root){animation-duration:.2s;animation-timing-function:ease}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.3s;animation-timing-function:ease}
 @media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
 /* The logo never disappears between pages: it keeps its place, its colour cross-fades and it does a quick half-turn. */
 .pdv-brand-mark{view-transition-name:pdv-logo}
-::view-transition-group(pdv-logo){animation-duration:.25s}
-::view-transition-image-pair(pdv-logo){animation:pdv-logo-spin .25s cubic-bezier(.2,.7,.2,1)}
-::view-transition-old(pdv-logo),::view-transition-new(pdv-logo){animation-duration:.25s;animation-timing-function:ease}
+::view-transition-group(pdv-logo){animation-duration:.35s}
+::view-transition-image-pair(pdv-logo){animation:pdv-logo-spin .35s cubic-bezier(.2,.7,.2,1)}
+::view-transition-old(pdv-logo),::view-transition-new(pdv-logo){animation-duration:.35s;animation-timing-function:ease}
 @keyframes pdv-logo-spin{from{transform:rotate(0deg)}to{transform:rotate(180deg)}}
 @media (prefers-reduced-motion:reduce){::view-transition-image-pair(pdv-logo),::view-transition-old(pdv-logo),::view-transition-new(pdv-logo){animation:none}}
 /* Page content slides in sideways while fading; the sidebar stays still. */
 .pdv-main{view-transition-name:pdv-main}
-::view-transition-old(pdv-main){animation:pdv-slide-out .1s ease-in both}
-::view-transition-new(pdv-main){animation:pdv-slide-in .2s cubic-bezier(.2,.7,.2,1) .05s both}
+::view-transition-old(pdv-main){animation:pdv-slide-out .15s ease-in both}
+::view-transition-new(pdv-main){animation:pdv-slide-in .28s cubic-bezier(.2,.7,.2,1) .07s both}
 @keyframes pdv-slide-out{to{opacity:0;transform:translateX(-24px)}}
 @keyframes pdv-slide-in{from{opacity:0;transform:translateX(24px)}}
 @media (prefers-reduced-motion:reduce){::view-transition-old(pdv-main),::view-transition-new(pdv-main){animation:none}}
@@ -194,6 +194,7 @@ body[data-section]{background:var(--tint);transition:background-color .3s ease}
 .pdv-accs{max-width:980px}
 .pdv-accs:empty{display:none}
 .pdv-acc{border-top:1px solid #ddd}
+.pdv-acc:last-child{border-bottom:1px solid #ddd}
 .pdv-acc-h{margin:0;font:inherit}
 .pdv-acc-btn{all:unset;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:24px;width:100%;padding:22px 0;cursor:pointer;font-family:var(--font-body);font-size:clamp(21px,0.7vw + 16px,26px);line-height:1.25;color:#1a1a1a}
 .pdv-acc-btn:hover{color:var(--accent)}
