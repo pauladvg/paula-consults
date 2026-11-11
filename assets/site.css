@@ -348,7 +348,7 @@ html,body{margin:0;background:#fff}
   ::view-transition-old(root){animation:pdv-fade-out .15s ease both}
   ::view-transition-new(root){animation:pdv-fade-in .25s ease .12s both}
   /* Contact form: compact, so the whole form fits on one screen. */
-  .pdv-contact-intro p{margin:0 0 .5em}
+  .pdv-contact-intro p,.pdv-contact-intro h1{margin:0 0 .5em}
   .pdv-oform{gap:10px;margin-top:0}
   .pdv-ogrid{grid-template-columns:1fr 1fr;gap:10px}
   .pdv-tfield,.pdv-oselect{gap:4px}
