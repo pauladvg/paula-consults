@@ -157,6 +157,11 @@ body[data-section]{background:var(--tint);transition:background-color .3s ease}
 @keyframes pdv-slide-out{to{opacity:0;transform:translateX(-24px)}}
 @keyframes pdv-slide-in{from{opacity:0;transform:translateX(24px)}}
 @media (prefers-reduced-motion:reduce){::view-transition-old(pdv-main),::view-transition-new(pdv-main){animation:none}}
+/* The footer never moves or fades between pages: only the page content transitions. */
+.pdv-footer{view-transition-name:pdv-footer}
+::view-transition-group(pdv-footer){animation:none}
+::view-transition-old(pdv-footer){display:none}
+::view-transition-new(pdv-footer){animation:none}
 .pdv-site{max-width:1500px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);min-height:100vh;background:var(--tint);color:#1a1a1a;font-family:var(--font-body);font-size:var(--fs-body);line-height:var(--lh-body)}
 .pdv-side{position:sticky;top:0;align-self:start;display:flex;flex-direction:column;gap:40px;padding:72px 0 48px clamp(24px,3vw,48px);box-sizing:border-box}
 .pdv-brand{display:inline-flex;align-items:center;gap:11px;align-self:flex-start;color:#1a1a1a;text-decoration:none;font-family:var(--font-body);font-size:19px;font-weight:600;line-height:1.2;white-space:nowrap}
