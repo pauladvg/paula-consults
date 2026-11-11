@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Paula de Vega</title>
+  <meta name="description" content="Get in touch with Paula de Vega about consulting, product, music or something else.">
+  <meta name="theme-color" content="#186b43">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Paula de Vega">
+  <meta property="og:title" content="Contact | Paula de Vega">
+  <meta property="og:url" content="https://pauladevega.com/contact">
+  <link rel="canonical" href="https://pauladevega.com/contact/">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/brand-asterisk.png">
+  <link rel="preload" href="/assets/inclusive-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/site.css">
+  <script src="/assets/site.js" defer></script>
+</head>
+<body data-section="contact">
+<div class="pdv-site" data-section="contact">
+  <aside class="pdv-side">
+    <a class="pdv-brand" href="/"><span class="pdv-brand-mark" aria-hidden="true"></span><span>Paula de Vega</span></a>
+    <nav class="pdv-nav" aria-label="Main">
+      <ul>
+        <li><a class="pdv-to-home" href="/">Home</a></li>
+        <li><a class="pdv-to-consulting" href="/consulting/">Consulting</a></li>
+        <li><a class="pdv-to-product" href="/product/">Product</a></li>
+        <li><a class="pdv-to-music" href="/music/">Music</a></li>
+        <li><a class="pdv-to-contact" href="/contact/" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <main class="pdv-main">
+    <div class="pdv-prose pdv-contact-intro">
+      <p>Want to work together, have a question, or just want to say hi? Write to me here.</p>
+    </div>
+
+    <form class="pdv-oform" novalidate>
+      <div class="pdv-hp" aria-hidden="true">
+        <label for="pdv-website">Leave this field empty</label>
+        <input id="pdv-website" type="text" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="pdv-ogrid">
+        <div id="pdv-f-name" class="pdv-ofield">
+          <label class="pdv-tfield"><span>Your name *</span><input type="text" name="name" autocomplete="name"></label>
+          <p class="pdv-omsg" role="alert" hidden>Please fill this in</p>
+        </div>
+        <div id="pdv-f-email" class="pdv-ofield">
+          <label class="pdv-tfield"><span>Email *</span><input type="email" name="email" autocomplete="email"></label>
+          <p class="pdv-omsg" role="alert" hidden>Please fill this in</p>
+        </div>
+      </div>
+      <div class="pdv-ogrid">
+        <div id="pdv-f-topic" class="pdv-ofield">
+          <label class="pdv-oselect">
+            <span>What’s this about? *</span>
+            <select name="topic" class="is-empty">
+              <option value="" disabled selected>Choose a topic</option>
+              <option value="consulting">Consulting</option>
+              <option value="product">Product</option>
+              <option value="music">Music</option>
+              <option value="other">Something else</option>
+            </select>
+          </label>
+          <p class="pdv-omsg" role="alert" hidden>Please fill this in</p>
+        </div>
+        <div id="pdv-f-company" class="pdv-ofield">
+          <label class="pdv-tfield"><span>Company (optional)</span><input type="text" name="company" autocomplete="organization"></label>
+        </div>
+      </div>
+      <div id="pdv-f-message" class="pdv-ofield">
+          <label class="pdv-tfield"><span>Message *</span><textarea name="message" rows="4"></textarea></label>
+          <p class="pdv-omsg" role="alert" hidden>Please fill this in</p>
+        </div>
+      <div id="pdv-f-consent" class="pdv-ofield pdv-oconsent">
+        <label>
+          <input type="checkbox" name="consent">
+          <span>I’ve read the <a href="/legal/#privacy" target="_blank" rel="noopener">privacy policy</a> *</span>
+        </label>
+        <p class="pdv-omsg" role="alert" hidden>Please accept the privacy policy</p>
+      </div>
+      <div class="pdv-oactions">
+        <button type="submit" class="pdv-send3"><span class="pdv-send3-solid" aria-hidden="true"></span><span class="pdv-send3-label"><span class="pdv-send3-text">Send</span><span class="pdv-send3-arrow" aria-hidden="true">→</span></span></button>
+        <em>Fields marked * are required.</em>
+      </div>
+      <p class="pdv-oerror" role="alert" hidden>Sorry, your message couldn’t be sent. Please try again, or email me directly at <a href="mailto:consulting@pauladevega.com">consulting@pauladevega.com</a>.</p>
+    </form>
+
+    <div class="pdv-prose pdv-sent" role="status" hidden>
+      <p class="pdv-thanks">Thanks, <span class="pdv-sent-name"></span>. I’ll get back to you soon.</p>
+    </div>
+
+    <footer class="pdv-footer">
+      <span>© 2026 Paula de Vega</span><span aria-hidden="true">·</span>
+      <a href="https://www.linkedin.com/in/pauladvg" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><span aria-hidden="true">·</span>
+      <a href="/legal/">Legal &amp; privacy</a>
+    </footer>
+  </main>
+</div>
+</body>
+</html>
