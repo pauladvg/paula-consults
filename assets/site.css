@@ -1,0 +1,323 @@
+/* Paula de Vega — site styles. Exported from the Claude Design project and cleaned up for the live site. */
+
+/* Webfonts — self-hosted from Google Fonts (Fredoka, Inclusive Sans). Variable weight 300–700. */
+@font-face{font-family:'Fredoka';font-style:normal;font-weight:300 700;font-display:swap;src:url("/assets/fredoka-latin-ext.woff2") format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Fredoka';font-style:normal;font-weight:300 700;font-display:swap;src:url("/assets/fredoka-latin.woff2") format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inclusive Sans';font-style:italic;font-weight:300 700;font-display:swap;src:url("/assets/inclusive-sans-italic-latin-ext.woff2") format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Inclusive Sans';font-style:italic;font-weight:300 700;font-display:swap;src:url("/assets/inclusive-sans-italic-latin.woff2") format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inclusive Sans';font-style:normal;font-weight:300 700;font-display:swap;src:url("/assets/inclusive-sans-latin-ext.woff2") format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Inclusive Sans';font-style:normal;font-weight:300 700;font-display:swap;src:url("/assets/inclusive-sans-latin.woff2") format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+
+/* Paula Consulting — color tokens. Source: Brand.pdf (color palette p.1, package cards p.2–3) */
+:root{
+  /* Base palette (from brand sheet) */
+  --pc-green:#186b43;
+  --pc-ink:#16170f;
+  --pc-stone:#dbdada;
+  --pc-white:#ffffff;
+  /* Observed tints (package cards) */
+  --pc-stone-soft:#e6e6e6;   /* Package 2 fill */
+  --pc-stone-line:#bbbabb;   /* Package 2 border */
+  /* Derived interaction shades (not in source — used for hover/press only) */
+  --pc-green-hover:#135a38;
+  --pc-green-press:#0f4a2e;
+  --pc-ink-hover:#2c2d24;
+
+  /* Semantic aliases */
+  --surface-page:var(--pc-white);
+  --surface-card:var(--pc-white);
+  --surface-card-muted:var(--pc-stone-soft);
+  --surface-card-accent:var(--pc-green);
+  --surface-inverse:var(--pc-ink);
+  --text-body:var(--pc-ink);
+  --text-heading:var(--pc-ink);
+  --text-on-accent:var(--pc-white);
+  --text-on-inverse:var(--pc-white);
+  --text-accent:var(--pc-green);
+  --border-strong:var(--pc-ink);
+  --border-muted:var(--pc-stone-line);
+  --border-on-accent:var(--pc-white);
+  --accent:var(--pc-green);
+  --accent-hover:var(--pc-green-hover);
+  --accent-press:var(--pc-green-press);
+  --ornament:var(--pc-stone);          /* grey asterisk / quiet decoration */
+  --ornament-accent:var(--pc-green);   /* green asterisk */
+  --focus-ring:var(--pc-green);
+}
+
+/* Paula Consulting — type tokens. Titles: Fredoka (uppercase). Body: Inclusive Sans.
+   Sizes copied from Brand.pdf (document pages are 1684×1190pt; 1pt → 1px). */
+:root{
+  --font-display:'Fredoka','Arial Rounded MT Bold',system-ui,sans-serif;
+  --font-body:'Inclusive Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+
+  --fw-regular:400; /* @kind font */
+  --fw-bold:700; /* @kind font */
+  --fw-display:700; /* @kind font */
+
+  --fs-display:53.2px;   /* Section titles: ABOUT MY WORK, PACKAGES */
+  --fs-brand:22.9px;     /* "Paula de Vega | Business consultant" header */
+  --fs-card-title:19.6px;/* Package 1 - Business diagnosis / Timeline line */
+  --fs-lead:19.2px;      /* Short standalone statements */
+  --fs-body:17.2px;      /* Paragraphs, lists, terms */
+  --fs-small:15.2px;     /* Side notes (italic) */
+  --fs-caption:14.8px;   /* Footer: name, email, confidentiality */
+
+  --lh-display:1.0; /* @kind font */
+  --lh-body:1.57; /* @kind font */        /* 27pt leading on 17.2pt paragraphs */
+  --lh-list:1.48; /* @kind font */        /* 25.5pt leading in card lists */
+  --lh-tight:1.25; /* @kind font */
+
+  --ls-display:-0.01em; /* @kind font */
+  --tt-display:uppercase; /* @kind font */
+
+  /* Semantic */
+  --text-title-font:var(--font-display);
+  --text-body-font:var(--font-body);
+}
+
+/* Paula Consulting — spacing, radii, rules, elevation */
+:root{
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:21px;   /* card padding + gap between package cards */
+  --space-6:26px;
+  --space-7:32px;
+  --space-8:48px;
+  --space-9:64px;
+  --space-page:106px; /* document page side margin */
+
+  --pad-card:21px;
+  --gap-card:21px;
+
+  /* "Never rough edges, slightly rounded" */
+  --radius-sm:6px;      /* buttons, inputs, tags */
+  --radius-card:16px;   /* package cards */
+  --radius-swatch:24px; /* color tiles on the brand sheet */
+
+  /* Rules — "Lines to separate. Sometimes with dots, sometimes a straight line." */
+  --rule-heavy:2.5px;   /* under brand header + card titles */
+  --rule-hair:1px;      /* card outline, footer line */
+  --rule-dot-size:3px;
+  --rule-dot-gap:7px;
+  --border-card:var(--rule-hair) solid var(--border-strong);
+
+  /* Flat brand: no drop shadows in source. */
+  --shadow-none:none;
+  --shadow-focus:0 0 0 3px color-mix(in srgb,var(--pc-green) 30%,transparent);
+
+  --ease:cubic-bezier(.3,.7,.4,1); /* @kind other */
+  --dur-fast:120ms; /* @kind other */
+  --dur:200ms; /* @kind other */
+}
+
+/* Minimal element defaults + reusable utility classes */
+html{color:var(--text-body);background:var(--surface-page);}
+body{margin:0;font-family:var(--font-body);font-size:var(--fs-body);line-height:var(--lh-body);-webkit-font-smoothing:antialiased;}
+a{color:var(--text-accent);text-decoration:underline;text-underline-offset:2px;}
+a:hover{color:var(--accent-hover);}
+.pc-title{font-family:var(--font-display);font-weight:var(--fw-display);font-size:var(--fs-display);line-height:var(--lh-display);letter-spacing:var(--ls-display);text-transform:uppercase;margin:0;}
+.pc-rule-dotted{height:var(--rule-dot-size);background-image:radial-gradient(circle,currentColor calc(var(--rule-dot-size)/2),transparent calc(var(--rule-dot-size)/2 + .5px));background-size:var(--rule-dot-gap) var(--rule-dot-size);background-repeat:repeat-x;}
+.pc-bw{filter:grayscale(1);}
+
+/* Paula de Vega — personal site shell (sidebar + content column). Shared by every page. */
+/* Section colours: ONE variable, --accent, set per page with data-section (on <body> and on .pdv-site).
+   Every accent element (logo, active nav item, content links, +/- icons, ticks, focus, form button) uses var(--accent). */
+:root,[data-section]{--accent:#5f5f5f;--accent-hover:#474747;--tint:#ffffff}
+[data-section="consulting"]{--accent:#186b43;--accent-hover:#135a38;--tint:#ffffff}
+[data-section="product"]{--accent:#2a4fa8;--accent-hover:#213f87;--tint:#ffffff}
+[data-section="music"]{--accent:#9a6a00;--accent-hover:#7a5400;--tint:#ffffff}
+/* Contact: grey until a topic is picked in its form, then that topic's colour. */
+html[data-pdv-topic="consulting"] [data-section="contact"]{--accent:#186b43;--accent-hover:#135a38}
+html[data-pdv-topic="product"] [data-section="contact"]{--accent:#2a4fa8;--accent-hover:#213f87}
+html[data-pdv-topic="music"] [data-section="contact"]{--accent:#9a6a00;--accent-hover:#7a5400}
+body[data-section]{background:var(--tint);transition:background-color .3s ease}
+/* Links that point to a section use that section's colour (homepage links, nav hover). */
+.pdv-to-home,.pdv-to-contact{--to:#5f5f5f;--to-hover:#474747}
+.pdv-to-consulting{--to:#186b43;--to-hover:#135a38}
+.pdv-to-product{--to:#2a4fa8;--to-hover:#213f87}
+.pdv-to-music{--to:#9a6a00;--to-hover:#7a5400}
+/* Page transitions. Kept short on purpose: browsers ignore clicks while a transition is playing. */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.2s;animation-timing-function:ease}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
+/* The logo never disappears between pages: it keeps its place, its colour cross-fades and it does a quick half-turn. */
+.pdv-brand-mark{view-transition-name:pdv-logo}
+::view-transition-group(pdv-logo){animation-duration:.25s}
+::view-transition-image-pair(pdv-logo){animation:pdv-logo-spin .25s cubic-bezier(.2,.7,.2,1)}
+::view-transition-old(pdv-logo),::view-transition-new(pdv-logo){animation-duration:.25s;animation-timing-function:ease}
+@keyframes pdv-logo-spin{from{transform:rotate(0deg)}to{transform:rotate(180deg)}}
+@media (prefers-reduced-motion:reduce){::view-transition-image-pair(pdv-logo),::view-transition-old(pdv-logo),::view-transition-new(pdv-logo){animation:none}}
+/* Page content slides in sideways while fading; the sidebar stays still. */
+.pdv-main{view-transition-name:pdv-main}
+::view-transition-old(pdv-main){animation:pdv-slide-out .1s ease-in both}
+::view-transition-new(pdv-main){animation:pdv-slide-in .2s cubic-bezier(.2,.7,.2,1) .05s both}
+@keyframes pdv-slide-out{to{opacity:0;transform:translateX(-24px)}}
+@keyframes pdv-slide-in{from{opacity:0;transform:translateX(24px)}}
+@media (prefers-reduced-motion:reduce){::view-transition-old(pdv-main),::view-transition-new(pdv-main){animation:none}}
+.pdv-site{max-width:1500px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);min-height:100vh;background:var(--tint);color:#1a1a1a;font-family:var(--font-body);font-size:var(--fs-body);line-height:var(--lh-body)}
+.pdv-side{position:sticky;top:0;align-self:start;display:flex;flex-direction:column;gap:40px;padding:72px 0 48px clamp(24px,3vw,48px);box-sizing:border-box}
+.pdv-brand{display:inline-flex;align-items:center;gap:11px;align-self:flex-start;color:#1a1a1a;text-decoration:none;font-family:var(--font-body);font-size:19px;font-weight:600;line-height:1.2;white-space:nowrap}
+.pdv-brand:hover{color:#1a1a1a}
+.pdv-brand-mark{display:block;width:28px;height:28px;flex:none;background-color:var(--accent);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2250 2250'%3E%3Cpath d='M 1658.6 75 L 1301.4 934.9 L 2165.7 577.7 L 2249.5 762.9 L 1380.8 1120.1 L 2249.5 1477.3 L 2165.7 1658.1 L 1301.4 1300.9 L 1658.6 2165.2 L 1477.8 2249 L 1120.6 1380.3 L 763.4 2249 L 582.6 2165.2 L 935.4 1300.9 L 75.5 1658.1 L 0.5 1477.3 L 860.4 1120.1 L 0.5 762.9 L 75.5 582.1 L 935.4 934.9 L 582.6 75 L 763.4 0 L 1120.6 859.9 L 1477.8 0 Z M 1658.6 75'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2250 2250'%3E%3Cpath d='M 1658.6 75 L 1301.4 934.9 L 2165.7 577.7 L 2249.5 762.9 L 1380.8 1120.1 L 2249.5 1477.3 L 2165.7 1658.1 L 1301.4 1300.9 L 1658.6 2165.2 L 1477.8 2249 L 1120.6 1380.3 L 763.4 2249 L 582.6 2165.2 L 935.4 1300.9 L 75.5 1658.1 L 0.5 1477.3 L 860.4 1120.1 L 0.5 762.9 L 75.5 582.1 L 935.4 934.9 L 582.6 75 L 763.4 0 L 1120.6 859.9 L 1477.8 0 Z M 1658.6 75'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform .7s cubic-bezier(.2,.7,.2,1),background-color .3s ease}
+.pdv-brand:hover .pdv-brand-mark,.pdv-brand:focus-visible .pdv-brand-mark{transform:rotate(90deg)}
+.pdv-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.pdv-nav a{position:relative;color:#1a1a1a;text-decoration:none;font-size:var(--fs-body);font-weight:400;line-height:1.4;transition:color .3s ease}
+.pdv-nav a:hover{color:var(--to,var(--accent));text-decoration:underline;text-underline-offset:4px}
+.pdv-nav a[aria-current="page"]{color:var(--accent);font-weight:600}
+.pdv-nav a[aria-current="page"]:hover{color:var(--accent);text-decoration:none}
+.pdv-main{display:flex;flex-direction:column;min-width:0;padding:72px clamp(24px,6vw,96px) 32px 72px;box-sizing:border-box}
+@media (max-width:1279px){.pdv-main{padding-left:48px}}
+.pdv-prose > :first-child{margin-top:-.3em}
+.pdv-prose{max-width:980px;font-size:clamp(18px,1.45vw + 8.5px,29px);line-height:1.45;font-weight:400;color:#1a1a1a;text-wrap:pretty}
+.pdv-prose p,.pdv-prose h1{margin:0 0 1em;font:inherit}
+.pdv-prose a,.pdv-link,.pdv-legal a,.pdv-acc-body a{transition:color .3s ease;color:var(--to,var(--accent));text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.18em;text-decoration-skip-ink:auto}
+.pdv-prose a:hover,.pdv-link:hover,.pdv-legal a:hover,.pdv-acc-body a:hover{color:var(--to-hover,var(--accent-hover))}
+.pdv-lead{margin:0 0 40px;max-width:640px;font-size:var(--fs-lead);text-wrap:pretty}
+.pdv-footer{margin-top:auto;padding-top:36px;font-size:var(--fs-caption);display:flex;flex-wrap:wrap;gap:8px}
+.pdv-footer a{color:#1a1a1a}
+.pdv-site a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+@media (max-width:760px){
+  .pdv-site{grid-template-columns:minmax(0,1fr)}
+  .pdv-side{position:static;flex-direction:row;align-items:flex-start;justify-content:space-between;gap:20px;padding:20px 20px 16px;border-bottom:1px solid #ddd}
+  .pdv-brand{font-size:17px;gap:9px}
+  .pdv-brand-mark{width:24px;height:24px}
+  .pdv-nav{padding-top:2px}
+  .pdv-nav ul{flex-direction:row;flex-wrap:wrap;justify-content:flex-end;gap:4px 14px}
+  .pdv-nav a{font-size:15px}
+  .pdv-main{padding:40px 20px 24px}
+}
+
+/* ---------- Accordion ---------- */
+.pdv-accs{max-width:980px}
+.pdv-accs:empty{display:none}
+.pdv-acc{border-top:1px solid #ddd}
+.pdv-acc-h{margin:0;font:inherit}
+.pdv-acc-btn{all:unset;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:24px;width:100%;padding:22px 0;cursor:pointer;font-family:var(--font-body);font-size:clamp(21px,0.7vw + 16px,26px);line-height:1.25;color:#1a1a1a}
+.pdv-acc-btn:hover{color:var(--accent)}
+.pdv-acc-btn:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:2px}
+.pdv-acc-icon{position:relative;width:.8em;height:.8em;flex:none}
+.pdv-acc-icon::before,.pdv-acc-icon::after{content:"";position:absolute;left:0;top:50%;width:100%;height:1.5px;margin-top:-.75px;background:var(--accent);transition:transform .22s ease}
+.pdv-acc-icon::after{transform:rotate(90deg)}
+.pdv-acc.is-open > .pdv-acc-h .pdv-acc-icon::after{transform:rotate(90deg) scaleX(0)}
+.pdv-acc-panel{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .22s ease,visibility 0s linear .22s}
+.pdv-acc.is-open > .pdv-acc-panel{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .22s ease,visibility 0s linear 0s}
+.pdv-acc-clip{position:relative;overflow:hidden;min-height:0}
+.pdv-acc-body{padding:4px 0 40px;color:#1a1a1a}
+.pdv-acc-body p{margin:0}
+.pdv-acc-intro{max-width:720px;margin:0 0 32px !important;font-size:var(--fs-lead)}
+.pdv-acc-outro{max-width:720px;margin:32px 0 0 !important;font-size:var(--fs-lead)}
+@media (prefers-reduced-motion:reduce){.pdv-acc-panel,.pdv-acc.is-open > .pdv-acc-panel,.pdv-proj.is-open > .pdv-acc-panel,.pdv-acc-icon::before,.pdv-acc-icon::after{transition:none}}
+
+/* ---------- Consulting page ---------- */
+.pdv-main .pdv-prose h1{font-weight:400}
+.pdv-prose + .pdv-accs{margin-top:0}
+.pdv-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.pdv-note{padding-top:16px;font-size:var(--fs-small)}
+
+/* Nested project list (Work): one row per project, one open at a time */
+.pdv-projs{border-top:1px solid #ddd}
+.pdv-proj{border-bottom:1px solid #ddd}
+.pdv-proj-h{margin:0;font:inherit}
+.pdv-proj-btn{all:unset;box-sizing:border-box;display:grid;grid-template-columns:84px minmax(0,1fr) auto auto 14px;align-items:baseline;gap:4px 24px;width:100%;padding:14px 0;cursor:pointer;color:#1a1a1a;font-size:var(--fs-body);line-height:1.4}
+.pdv-proj-btn:hover .pdv-proj-title{color:var(--accent)}
+.pdv-proj-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.pdv-proj-date{font-size:var(--fs-small);color:#666}
+.pdv-proj-title{font-weight:700}
+.pdv-proj-meta{font-size:var(--fs-small)}
+.pdv-proj-icon{width:12px;height:12px;align-self:center}
+.pdv-proj.is-open > .pdv-proj-h .pdv-proj-icon::after{transform:rotate(90deg) scaleX(0)}
+.pdv-proj.is-open > .pdv-acc-panel{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .22s ease,visibility 0s linear 0s}
+.pdv-proj-body{margin:0;padding:0 0 20px 108px;max-width:680px;text-wrap:pretty}
+
+/* Package comparison table */
+.pdv-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.pdv-table-wrap:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.pdv-table{width:100%;min-width:640px;table-layout:fixed;border-collapse:collapse;font-size:var(--fs-body);line-height:1.35;color:#1a1a1a}
+.pdv-table th,.pdv-table td{padding:11px 16px 11px 0;border-bottom:1px solid #ddd;text-align:left;vertical-align:top}
+.pdv-table thead th{vertical-align:bottom;font-weight:700;padding-bottom:14px}
+.pdv-table tbody th{font-weight:400}
+.pdv-table td{width:22%}
+.pdv-table-sub{display:block;margin-top:4px;font-size:var(--fs-small);font-weight:400;font-style:italic;color:#666;line-height:1.35}
+.pdv-table th:first-child{position:sticky;left:0;z-index:1;background:var(--tint);width:34%;min-width:170px}
+.pdv-yes{color:var(--accent);font-weight:700}
+.pdv-no{color:#6e6e6e}
+.pdv-table tbody tr:last-child > *{border-bottom:0}
+
+/* Legal page */
+.pdv-legal{display:flex;flex-direction:column;gap:14px;max-width:820px;color:#1a1a1a}
+.pdv-legal p{margin:0;text-wrap:pretty}
+.pdv-legal h2{margin:28px 0 0;font-family:var(--font-body);font-weight:700;font-size:var(--fs-card-title);scroll-margin-top:24px}
+
+@media (max-width:760px){
+  .pdv-proj-btn{grid-template-columns:minmax(0,1fr) 14px;gap:2px 16px}
+  .pdv-proj-date,.pdv-proj-title,.pdv-proj-meta{grid-column:1}
+  .pdv-proj-icon{grid-column:2;grid-row:1 / span 4}
+  .pdv-proj-body{padding-left:0}
+  .pdv-table th:first-child{min-width:140px}
+}
+
+/* ---------- Contact form: original design-system style, accent follows the chosen topic ---------- */
+.pdv-oform{position:relative;display:flex;flex-direction:column;gap:18px;max-width:980px;margin-top:8px;color:#1a1a1a;
+  --pc-green:var(--accent);--pc-green-hover:var(--accent-hover);--pc-green-press:var(--accent-hover);
+  --shadow-focus:0 0 0 .5px var(--accent)}
+.pdv-oform a{color:var(--accent)}
+.pdv-oform button{transition:background-color .3s ease,border-color .3s ease}
+.pdv-hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+.pdv-oselect{display:flex;flex-direction:column;gap:6px;font-family:var(--font-body);color:var(--text-body)}
+.pdv-oselect > span{font-size:var(--fs-body);font-weight:700}
+.pdv-oselect select{box-sizing:border-box;width:100%;margin:0;font:inherit;font-size:var(--fs-body);padding:10px 36px 10px 12px;border:1px solid var(--pc-ink);border-radius:var(--radius-sm);background-color:var(--pc-white);color:inherit;outline:none;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2316170f' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;transition:border-color .3s ease,box-shadow .3s ease}
+.pdv-oselect select:focus{border-color:var(--accent);box-shadow:0 0 0 .5px var(--accent)}
+.pdv-oselect select.is-empty{color:#6e6e6e}
+.pdv-oselect select option{color:#1a1a1a}
+.pdv-thanks{color:var(--accent)}
+.pdv-ofield{display:flex;flex-direction:column;gap:6px;min-width:0}
+.pdv-ofield.is-missing input:not([type="checkbox"]),.pdv-ofield.is-missing textarea,.pdv-ofield.is-missing select{border-color:#b42318 !important;box-shadow:none !important}
+.pdv-oconsent.is-missing input[type="checkbox"]{outline:1.5px solid #b42318;outline-offset:2px}
+.pdv-omsg{margin:0;font-size:var(--fs-small);color:#b42318;font-weight:400}
+
+/* Send button: solid #1a1a1a until a section topic is chosen, then that topic's colour fades in */
+.pdv-send3{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;min-width:168px;padding:14px 30px;border:0;border-radius:var(--radius-sm);cursor:pointer;
+  font-family:var(--font-body);font-size:var(--fs-card-title);font-weight:600;line-height:1.2;color:#fff;
+  background:#1a1a1a}
+.pdv-send3-solid{position:absolute;inset:0;z-index:-1;background-color:var(--accent);opacity:0;transition:opacity .3s ease,background-color .3s ease}
+.pdv-send3.has-topic .pdv-send3-solid{opacity:1}
+.pdv-send3::after{content:"";position:absolute;inset:0;z-index:-1;background:#000;opacity:0;transition:opacity .2s ease}
+.pdv-send3:hover::after{opacity:.1}
+.pdv-send3-label{display:inline-flex;align-items:center;gap:.4em}
+.pdv-send3-arrow{display:inline-block;transition:transform .2s ease}
+.pdv-send3:hover .pdv-send3-arrow{transform:translateX(3px)}
+.pdv-send3.is-sending{cursor:progress}
+.pdv-send3.is-sending .pdv-send3-arrow{display:none}
+.pdv-send3:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.pdv-send3-solid,.pdv-send3::after,.pdv-send3-arrow{transition:none}}
+
+/* ---------- Typewriter line (pdv-typewriter.js) ---------- */
+.pdv-prose [data-typewriter]{font-size:clamp(18px,1.45vw + 8.5px,29px);font-style:italic;color:#666}
+.pdv-tw-c{color:transparent}
+.pdv-tw-c.is-on{color:inherit}
+.pdv-tw-start,.pdv-tw-c.is-caret{position:relative}
+.pdv-tw .is-caret::after{content:"";position:absolute;left:100%;margin-left:.08em;bottom:.2em;width:2px;height:.72em;background:var(--accent);animation:pdv-blink 1s steps(1,end) infinite}
+[data-typewriter].is-static .is-caret::after{animation:none}
+@keyframes pdv-blink{0%{opacity:1}50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.pdv-tw .is-caret::after{animation:none}}
+
+html,body{margin:0;background:#fff}
+
+/* ---------- Contact form text fields (from the design system's TextField component) ---------- */
+.pdv-tfield{display:flex;flex-direction:column;gap:6px;font-family:var(--font-body);color:var(--text-body)}
+.pdv-tfield > span{font-size:var(--fs-body);font-weight:700}
+.pdv-tfield input,.pdv-tfield textarea{box-sizing:border-box;width:100%;margin:0;font:inherit;font-size:var(--fs-body);padding:10px 12px;border:1px solid var(--pc-ink);border-radius:var(--radius-sm);background:var(--pc-white);color:inherit;outline:none;box-shadow:none;resize:vertical}
+.pdv-tfield input:focus,.pdv-tfield textarea:focus{border-color:var(--accent);box-shadow:0 0 0 .5px var(--accent)}
+.pdv-tfield textarea{min-height:140px}
+.pdv-ogrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.pdv-oconsent{display:flex;flex-direction:column;gap:8px;max-width:620px}
+.pdv-oconsent label{display:flex;align-items:center;gap:10px;font-size:var(--fs-small);cursor:pointer}
+.pdv-oconsent input[type="checkbox"]{width:20px;height:20px;margin:0;accent-color:var(--accent);flex:none}
+.pdv-oactions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding-top:6px}
+.pdv-oactions em{font-size:var(--fs-small)}
+.pdv-oerror{margin:0;padding:14px 18px;border:1.5px solid var(--pc-ink);border-radius:var(--radius-sm)}
+.pdv-oerror a{font-weight:700}
+[hidden]{display:none !important}
