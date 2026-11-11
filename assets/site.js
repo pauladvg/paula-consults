@@ -164,9 +164,12 @@ const FORM_ENDPOINT = 'https://formspree.io/f/mkjokkzn';
 
   /* ---------- 4. Typewriter line: <p data-typewriter>Your sentence.</p> ----------
      The full sentence stays readable for screen readers and search engines; the animated copy is
-     aria-hidden and fully laid out from the start, so nothing moves while it types. */
+     aria-hidden and fully laid out from the start, so nothing moves while it types.
+     It types for everyone (typing isn't on-screen movement); for visitors who asked their device
+     for less motion, the cursor just doesn't blink. It types again when a page is restored with Back. */
   const START = 600, STEP = 95, PAUSE = 500;
   const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const typers = [];
   document.querySelectorAll('[data-typewriter]').forEach(el => {
     const text = (el.textContent || '').replace(/\s+/g, ' ').trim();
     if (!text) return;
@@ -188,24 +191,26 @@ const FORM_ENDPOINT = 'https://formspree.io/f/mkjokkzn';
       return s;
     });
     el.append(sr, vis);
-    let caret = start;
-    const moveCaret = to => { caret.classList.remove('is-caret'); to.classList.add('is-caret'); caret = to; };
-    if (reduce) {
-      chars.forEach(c => c.classList.add('is-on'));
-      el.classList.add('is-static');
-      moveCaret(chars[chars.length - 1]);
-      return;
-    }
-    moveCaret(start);
+    if (reduce) el.classList.add('is-static');
     let firstStop = text.indexOf('.');
     while (firstStop >= 0 && text[firstStop + 1] === '.') firstStop++;
-    let i = 0;
-    const tick = () => {
-      chars[i].classList.add('is-on');
-      moveCaret(chars[i]);
-      i++;
-      if (i < chars.length) setTimeout(tick, (i - 1 === firstStop) ? STEP + PAUSE : STEP);
+    let caret = start, timer = null;
+    const moveCaret = to => { caret.classList.remove('is-caret'); to.classList.add('is-caret'); caret = to; };
+    const run = () => {
+      clearTimeout(timer);
+      chars.forEach(c => c.classList.remove('is-on'));
+      moveCaret(start);
+      let i = 0;
+      const tick = () => {
+        chars[i].classList.add('is-on');
+        moveCaret(chars[i]);
+        i++;
+        if (i < chars.length) timer = setTimeout(tick, (i - 1 === firstStop) ? STEP + PAUSE : STEP);
+      };
+      timer = setTimeout(tick, START);
     };
-    setTimeout(tick, START);
+    typers.push(run);
+    run();
   });
+  window.addEventListener('pageshow', e => { if (e.persisted) typers.forEach(run => run()); });
 })();
