@@ -322,3 +322,41 @@ html,body{margin:0;background:#fff}
 .pdv-oerror{margin:0;padding:14px 18px;border:1.5px solid var(--pc-ink);border-radius:var(--radius-sm)}
 .pdv-oerror a{font-weight:700}
 [hidden]{display:none !important}
+
+/* ---------- Mobile refinements (phones only) ---------- */
+@keyframes pdv-fade-out{to{opacity:0}}
+@keyframes pdv-fade-in{from{opacity:0}}
+@media (max-width:760px){
+  /* Fill the visible screen exactly, so pages that fit don't scroll (100svh ignores the browser bars). */
+  .pdv-site{min-height:100vh;min-height:100svh;grid-template-rows:auto 1fr}
+  /* Header: logo + name, with the whole menu on one line below it. */
+  .pdv-side{flex-direction:column;align-items:stretch;gap:14px;padding:18px 20px 12px}
+  .pdv-nav{padding-top:0}
+  .pdv-nav ul{flex-wrap:nowrap;justify-content:space-between;gap:0 10px}
+  .pdv-nav a{font-size:15px;white-space:nowrap}
+  .pdv-main{padding:28px 20px 20px}
+  .pdv-footer{padding-top:24px;font-size:13px;gap:6px}
+  /* Page transitions: the header stays put; the content fades out, then the new content fades in (no overlap). */
+  .pdv-main,.pdv-brand-mark{view-transition-name:none}
+  .pdv-side{view-transition-name:pdv-side}
+  ::view-transition-old(pdv-side),::view-transition-new(pdv-side){animation-duration:.25s}
+  ::view-transition-old(root){animation:pdv-fade-out .15s ease both}
+  ::view-transition-new(root){animation:pdv-fade-in .25s ease .12s both}
+  /* Contact form: compact, so the whole form fits on one screen. */
+  .pdv-contact-intro p{margin:0 0 .5em}
+  .pdv-oform{gap:10px;margin-top:0}
+  .pdv-ogrid{grid-template-columns:1fr 1fr;gap:10px}
+  .pdv-tfield,.pdv-oselect{gap:4px}
+  .pdv-tfield > span,.pdv-oselect > span{font-size:14px}
+  .pdv-tfield input,.pdv-oselect select{padding:8px 10px;font-size:16px}
+  .pdv-oselect select{padding-right:30px}
+  .pdv-tfield textarea{min-height:84px;padding:8px 10px;font-size:16px}
+  .pdv-oconsent label{font-size:13px;gap:8px}
+  .pdv-oconsent input[type="checkbox"]{width:18px;height:18px}
+  .pdv-omsg{font-size:12px}
+  .pdv-oactions{padding-top:2px;gap:12px}
+  .pdv-send3{min-width:0;padding:11px 24px;font-size:16px}
+  .pdv-oactions em{font-size:12px}
+}
+/* Visitors who asked their device for less motion get no page transition at all. */
+@media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}
