@@ -443,3 +443,9 @@ html,body{margin:0;background:#fff}
 .pdv-brand{gap:14px;font-family:var(--font-display);font-size:19px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;line-height:1.05;white-space:normal}
 .pdv-brand-mark{width:44px;height:44px}
 @media (max-width:760px){.pdv-brand{font-size:16px;gap:12px}.pdv-brand-mark{width:36px;height:36px}}
+
+/* ---------- Consulting: small asterisk before each section title (turns when hovered or open) ---------- */
+.pdv-acc-label{display:inline-flex;align-items:center;gap:12px}
+.pdv-acc-ast{display:block;flex:none;width:.85em;height:.85em;background-color:var(--accent);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2250 2250'%3E%3Cpath d='M 1658.6 75 L 1301.4 934.9 L 2165.7 577.7 L 2249.5 762.9 L 1380.8 1120.1 L 2249.5 1477.3 L 2165.7 1658.1 L 1301.4 1300.9 L 1658.6 2165.2 L 1477.8 2249 L 1120.6 1380.3 L 763.4 2249 L 582.6 2165.2 L 935.4 1300.9 L 75.5 1658.1 L 0.5 1477.3 L 860.4 1120.1 L 0.5 762.9 L 75.5 582.1 L 935.4 934.9 L 582.6 75 L 763.4 0 L 1120.6 859.9 L 1477.8 0 Z M 1658.6 75'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2250 2250'%3E%3Cpath d='M 1658.6 75 L 1301.4 934.9 L 2165.7 577.7 L 2249.5 762.9 L 1380.8 1120.1 L 2249.5 1477.3 L 2165.7 1658.1 L 1301.4 1300.9 L 1658.6 2165.2 L 1477.8 2249 L 1120.6 1380.3 L 763.4 2249 L 582.6 2165.2 L 935.4 1300.9 L 75.5 1658.1 L 0.5 1477.3 L 860.4 1120.1 L 0.5 762.9 L 75.5 582.1 L 935.4 934.9 L 582.6 75 L 763.4 0 L 1120.6 859.9 L 1477.8 0 Z M 1658.6 75'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.pdv-acc-btn:hover .pdv-acc-ast,.pdv-acc.is-open > .pdv-acc-h .pdv-acc-ast{transform:rotate(90deg)}
+@media (prefers-reduced-motion:reduce){.pdv-acc-ast{transition:none}}
