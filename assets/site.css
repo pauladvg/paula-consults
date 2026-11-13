@@ -128,17 +128,14 @@ a:hover{color:var(--accent-hover);}
 :root,[data-section]{--accent:#5f5f5f;--accent-hover:#474747;--tint:#ffffff}
 [data-section="consulting"]{--accent:#186b43;--accent-hover:#135a38;--tint:#ffffff}
 [data-section="product"]{--accent:#2a4fa8;--accent-hover:#213f87;--tint:#ffffff}
-[data-section="music"]{--accent:#9a6a00;--accent-hover:#7a5400;--tint:#ffffff}
 /* Contact: grey until a topic is picked in its form, then that topic's colour. */
 html[data-pdv-topic="consulting"] [data-section="contact"]{--accent:#186b43;--accent-hover:#135a38}
 html[data-pdv-topic="product"] [data-section="contact"]{--accent:#2a4fa8;--accent-hover:#213f87}
-html[data-pdv-topic="music"] [data-section="contact"]{--accent:#9a6a00;--accent-hover:#7a5400}
 body[data-section]{background:var(--tint);transition:background-color .3s ease}
 /* Links that point to a section use that section's colour (homepage links, nav hover). */
 .pdv-to-home,.pdv-to-contact{--to:#5f5f5f;--to-hover:#474747}
 .pdv-to-consulting{--to:#186b43;--to-hover:#135a38}
 .pdv-to-product{--to:#2a4fa8;--to-hover:#213f87}
-.pdv-to-music{--to:#9a6a00;--to-hover:#7a5400}
 /* Page transitions. Kept short on purpose: browsers ignore clicks while a transition is playing. */
 @view-transition{navigation:auto}
 ::view-transition-old(root),::view-transition-new(root){animation-duration:.3s;animation-timing-function:ease}
@@ -449,3 +446,12 @@ html,body{margin:0;background:#fff}
 .pdv-acc-ast{display:block;flex:none;width:.85em;height:.85em;background-color:var(--accent);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2250 2250'%3E%3Cpath d='M 1658.6 75 L 1301.4 934.9 L 2165.7 577.7 L 2249.5 762.9 L 1380.8 1120.1 L 2249.5 1477.3 L 2165.7 1658.1 L 1301.4 1300.9 L 1658.6 2165.2 L 1477.8 2249 L 1120.6 1380.3 L 763.4 2249 L 582.6 2165.2 L 935.4 1300.9 L 75.5 1658.1 L 0.5 1477.3 L 860.4 1120.1 L 0.5 762.9 L 75.5 582.1 L 935.4 934.9 L 582.6 75 L 763.4 0 L 1120.6 859.9 L 1477.8 0 Z M 1658.6 75'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2250 2250'%3E%3Cpath d='M 1658.6 75 L 1301.4 934.9 L 2165.7 577.7 L 2249.5 762.9 L 1380.8 1120.1 L 2249.5 1477.3 L 2165.7 1658.1 L 1301.4 1300.9 L 1658.6 2165.2 L 1477.8 2249 L 1120.6 1380.3 L 763.4 2249 L 582.6 2165.2 L 935.4 1300.9 L 75.5 1658.1 L 0.5 1477.3 L 860.4 1120.1 L 0.5 762.9 L 75.5 582.1 L 935.4 934.9 L 582.6 75 L 763.4 0 L 1120.6 859.9 L 1477.8 0 Z M 1658.6 75'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
 .pdv-acc-btn:hover .pdv-acc-ast,.pdv-acc.is-open > .pdv-acc-h .pdv-acc-ast{transform:rotate(90deg)}
 @media (prefers-reduced-motion:reduce){.pdv-acc-ast{transition:none}}
+
+/* ---------- Unified type and text width across pages ---------- */
+/* Every page: one big headline, then body-size text, never wider than ~75 characters per line */
+.pdv-prose > p{font-size:var(--fs-body);line-height:var(--lh-body);max-width:720px;margin:0 0 16px}
+.pdv-intro-cols{max-width:720px}
+@media (max-width:760px){
+  .pdv-prose{font-size:22px;line-height:1.35}
+  .pdv-prose [data-typewriter]{font-size:inherit}
+}

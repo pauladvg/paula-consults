@@ -69,7 +69,7 @@ const FORM_ENDPOINT = 'https://formspree.io/f/mkjokkzn';
   /* ---------- 3. Contact form ---------- */
   const form = document.querySelector('.pdv-oform');
   if (form) {
-    const TOPICS = { consulting: 'Consulting', product: 'Product', music: 'Music', other: 'Something else' };
+    const TOPICS = { consulting: 'Consulting', product: 'Product', other: 'Something else' };
     const norm = s => {
       s = String(s || '').toLowerCase().trim().replace(/[\s_]+/g, '-');
       if (s === 'other' || s === 'something-else' || s === 'else') return 'other';
@@ -89,7 +89,7 @@ const FORM_ENDPOINT = 'https://formspree.io/f/mkjokkzn';
       if (t) document.documentElement.setAttribute('data-pdv-topic', t);
       else document.documentElement.removeAttribute('data-pdv-topic');
       fields.topic.classList.toggle('is-empty', !t);
-      sendBtn.classList.toggle('has-topic', ['consulting', 'product', 'music'].includes(t));
+      sendBtn.classList.toggle('has-topic', ['consulting', 'product'].includes(t));
     }
     const fromUrl = norm(new URLSearchParams(window.location.search).get('topic'));
     if (fromUrl) fields.topic.value = fromUrl;
