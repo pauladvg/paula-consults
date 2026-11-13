@@ -41,6 +41,20 @@ const FORM_ENDPOINT = 'https://formspree.io/f/mkjokkzn';
       setOpen(item, btn, willOpen);
     });
   });
+  // Product page cards: "See what I did" opens the card's projects; it becomes "Show less".
+  document.querySelectorAll('.pdv-card-toggle').forEach(btn => {
+    const panel = document.getElementById(btn.getAttribute('aria-controls'));
+    const label = btn.querySelector('.pdv-card-label');
+    const grid = btn.closest('.pdv-cards');
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.classList.toggle('is-open', open);
+      if (panel) panel.classList.toggle('is-open', open);
+      if (label) label.textContent = open ? 'Show less' : 'See what I did';
+      if (grid) grid.classList.toggle('is-any-open', !!grid.querySelector('.pdv-card-toggle[aria-expanded="true"]'));
+    });
+  });
   // /consulting/#work or #pricing opens that section and scrolls to it.
   function openFromHash() {
     const id = decodeURIComponent((window.location.hash || '').replace(/^#/, ''));
@@ -171,7 +185,13 @@ const FORM_ENDPOINT = 'https://formspree.io/f/mkjokkzn';
   const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const typers = [];
   document.querySelectorAll('[data-typewriter]').forEach(el => {
-    const text = (el.textContent || '').replace(/\s+/g, ' ').trim();
+    const segs = [];
+    el.childNodes.forEach(n => {
+      const t = (n.textContent || '').replace(/\s+/g, ' ');
+      if (t) segs.push({ t, strong: n.nodeType === 1 && /^(STRONG|B)$/.test(n.nodeName) });
+    });
+    if (segs.length) { segs[0].t = segs[0].t.replace(/^\s+/, ''); segs[segs.length - 1].t = segs[segs.length - 1].t.replace(/\s+$/, ''); }
+    const text = segs.map(sg => sg.t).join('');
     if (!text) return;
     el.textContent = '';
     const sr = document.createElement('span');
@@ -183,13 +203,14 @@ const FORM_ENDPOINT = 'https://formspree.io/f/mkjokkzn';
     const start = document.createElement('span');
     start.className = 'pdv-tw-start';
     vis.appendChild(start);
-    const chars = Array.from(text).map(ch => {
-      const s = document.createElement('span');
-      s.className = 'pdv-tw-c';
-      s.textContent = ch;
-      vis.appendChild(s);
-      return s;
-    });
+    const chars = [];
+    segs.forEach(sg => Array.from(sg.t).forEach(ch => {
+      const c = document.createElement('span');
+      c.className = 'pdv-tw-c' + (sg.strong ? ' pdv-tw-strong' : '');
+      c.textContent = ch;
+      vis.appendChild(c);
+      chars.push(c);
+    }));
     el.append(sr, vis);
     if (reduce) el.classList.add('is-static');
     let firstStop = text.indexOf('.');
