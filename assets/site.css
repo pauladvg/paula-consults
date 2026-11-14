@@ -218,7 +218,6 @@ body[data-section]{background:var(--tint);transition:background-color .3s ease}
 .pdv-main .pdv-prose h1{font-weight:400}
 .pdv-prose + .pdv-accs{margin-top:0}
 .pdv-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.pdv-note{padding-top:16px;font-size:var(--fs-small)}
 
 /* Nested project list (Work): one row per project, one open at a time */
 .pdv-projs{border-top:1px solid #ddd}
