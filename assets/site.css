@@ -449,7 +449,6 @@ html,body{margin:0;background:#fff}
 
 /* ---------- Unified type and text width across pages ---------- */
 /* Every page: one big headline, then body-size text, never wider than ~75 characters per line */
-.pdv-intro-cols{max-width:720px}
 @media (max-width:760px){
   body:not([data-section="home"]) .pdv-prose{font-size:22px;line-height:1.35}
   .pdv-prose [data-typewriter]{font-size:inherit}
