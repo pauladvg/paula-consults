@@ -211,7 +211,6 @@ body[data-section]{background:var(--tint);transition:background-color .3s ease}
 .pdv-acc-body{padding:4px 0 40px;color:#1a1a1a}
 .pdv-acc-body p{margin:0}
 .pdv-acc-intro{max-width:720px;margin:0 0 32px !important;font-size:var(--fs-lead)}
-.pdv-acc-outro{max-width:720px;margin:32px 0 0 !important;font-size:var(--fs-lead)}
 @media (prefers-reduced-motion:reduce){.pdv-acc-panel,.pdv-acc.is-open > .pdv-acc-panel,.pdv-proj.is-open > .pdv-acc-panel,.pdv-acc-icon::before,.pdv-acc-icon::after{transition:none}}
 
 /* ---------- Consulting page ---------- */
@@ -243,6 +242,17 @@ body[data-section]{background:var(--tint);transition:background-color .3s ease}
 .pdv-table tbody th{font-weight:400}
 .pdv-table td{width:22%}
 .pdv-table-sub{display:block;margin-top:4px;font-size:var(--fs-small);font-weight:400;font-style:italic;color:#666;line-height:1.35}
+.pdv-package-price{display:block;margin-top:10px;line-height:1.2;white-space:nowrap}
+.pdv-package-price-from{font-family:var(--font-body);font-size:var(--fs-small);font-weight:400;color:#666}
+.pdv-package-price-amount{font-family:var(--font-display);font-size:var(--fs-lead);font-weight:700;color:var(--accent)}
+.pdv-packages-mobile{display:none}
+.pdv-mobile-package + .pdv-mobile-package{margin-top:24px;padding-top:24px;border-top:1px solid #ddd}
+.pdv-mobile-package-name{margin:0 0 4px;font-size:var(--fs-body);font-weight:700}
+.pdv-package-details{display:flex;flex-direction:column;gap:8px;margin:0}
+.pdv-package-details > div{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.pdv-package-details dt,.pdv-package-details dd{margin:0}
+.pdv-package-details dt{flex:1;min-width:0}
+.pdv-package-details dd{text-align:right}
 .pdv-table th:first-child{position:sticky;left:0;z-index:1;background:var(--tint);width:34%;min-width:170px}
 .pdv-yes{color:var(--accent);font-weight:700}
 .pdv-no{color:#6e6e6e}
@@ -254,6 +264,11 @@ body[data-section]{background:var(--tint);transition:background-color .3s ease}
 .pdv-legal h2{margin:28px 0 0;font-family:var(--font-body);font-weight:700;font-size:var(--fs-card-title);scroll-margin-top:24px}
 
 @media (max-width:760px){
+  .pdv-table-wrap{display:none}
+  .pdv-packages-mobile{display:block}
+  .pdv-mobile-package .pdv-table-sub{margin:0}
+  .pdv-mobile-package .pdv-package-price{margin:10px 0 16px}
+  .pdv-package-details dd{flex:none}
   .pdv-proj-btn{grid-template-columns:minmax(0,1fr) 14px;gap:2px 16px}
   .pdv-proj-date,.pdv-proj-title,.pdv-proj-meta{grid-column:1}
   .pdv-proj-icon{grid-column:2;grid-row:1 / span 4}
