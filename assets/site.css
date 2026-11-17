@@ -522,3 +522,5 @@ body[data-section="consulting"] .pdv-acc-title{font-size:clamp(18px,calc(2.5cqi 
 .pdv-about .pdv-intro-cols a:not([class*="pdv-to-"]){color:var(--accent);text-decoration-thickness:1.5px;text-underline-offset:.18em;transition:color .3s ease}
 .pdv-about .pdv-intro-cols a:not([class*="pdv-to-"]):hover{color:#1a1a1a}
 .pdv-about .pdv-intro-cols a[class*="pdv-to-"]{text-decoration-thickness:1.5px;text-underline-offset:.18em}
+/* About in the menu: grey like Home and Contact */
+.pdv-to-about{--to:#5f5f5f;--to-hover:#474747}
