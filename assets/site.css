@@ -477,3 +477,48 @@ body[data-section="consulting"] .pdv-acc-title{font-size:clamp(18px,calc(2.5cqi 
   body:not([data-section="home"]) .pdv-prose{font-size:22px;line-height:1.35}
   .pdv-prose [data-typewriter]{font-size:inherit}
 }
+
+/* About page: one text width (same as the Product intro); open sections with Consulting-style titles */
+.pdv-about{display:flex;flex-direction:column;max-width:980px;margin-bottom:24px}
+.pdv-about .pdv-intro-cols{margin:0}
+.pdv-about-top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 48px;align-items:start;margin-bottom:48px}
+.pdv-about-top .pdv-prose p{margin-bottom:.45em}
+.pdv-about-sub{margin:0;color:#1a1a1a;text-wrap:pretty}
+.pdv-about-pic{display:block;height:var(--pic-h,260px);width:auto;max-width:320px;object-fit:contain;object-position:top right;transform:scale(1.35);transform-origin:right center}
+.pdv-about strong{font-weight:600}
+/* links to a section keep that section's colour (Product blue, Consulting green) */
+.pdv-intro-cols a[class*="pdv-to-"]{color:var(--to)}
+.pdv-intro-cols a[class*="pdv-to-"]:hover{color:var(--to-hover)}
+.pdv-about-sec{border-top:1px solid #ddd;padding-bottom:40px}
+.pdv-about-h{margin:0;padding:22px 0 18px;display:flex;align-items:center;gap:12px;font-family:var(--font-display);font-weight:700;font-size:clamp(20px,0.6vw + 15px,24px);line-height:1.1;letter-spacing:.02em;text-transform:uppercase;color:#1a1a1a}
+.pdv-about-h .pdv-acc-ast{width:.85em;height:.85em;background-color:#5f5f5f}
+/* Testimonial cards: Product-style cards in the page's accent, sliding in an endless loop */
+.pdv-qmarquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 32px,#000 calc(100% - 32px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 32px,#000 calc(100% - 32px),transparent 100%)}
+.pdv-qtrack{display:flex;align-items:stretch;width:max-content;animation:pdv-qscroll 45s linear infinite}
+@keyframes pdv-qscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.pdv-qcard{flex:none;width:320px;box-sizing:border-box;margin:0 20px 0 0;display:flex;flex-direction:column;gap:16px;padding:24px;border:1.5px solid var(--accent);border-radius:12px;background:#fff}
+.pdv-qcard blockquote{margin:0}
+.pdv-qcard blockquote p{margin:0;color:#1a1a1a;text-wrap:pretty}
+.pdv-qcard figcaption{margin-top:auto;font-size:var(--fs-small);color:#666}
+.pdv-qcard figcaption strong{font-weight:600}
+/* Hand-drawn doodles on the testimonial cards (same ink as the portrait) */
+.pdv-qmark{display:block;width:38px;height:29px;margin:0 0 -8px -4px;color:#1a1a1a}
+.pdv-scribble{position:relative;display:inline-block;white-space:nowrap}
+.pdv-scribble svg{position:absolute;left:-3px;bottom:-6px;width:calc(100% + 6px);height:9px;overflow:visible;color:#1a1a1a;pointer-events:none}
+/* longer phrases: the same pen underline, continuing onto the next line when the phrase wraps */
+.pdv-scribble.is-wrap{display:inline;white-space:normal;padding-bottom:7px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='10' viewBox='0 0 140 10'%3E%3Cpath d='M0 5.6c11-1.7 21-2.4 32-1.2 10 1.1 18 2.2 29 .9 12-1.4 22-2.6 34-1.3 13 1.4 26 2.1 45 1.6' fill='none' stroke='%231a1a1a' stroke-width='1.7' stroke-linecap='round'/%3E%3Cpath d='M0 8.2c17-1.3 35-.9 52-.3 21 .7 52-.2 88-1.5' fill='none' stroke='%231a1a1a' stroke-width='1.1' stroke-linecap='round' opacity='.8'/%3E%3C/svg%3E") repeat-x left bottom/140px 10px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+@media (max-width:760px){.pdv-qcard{width:270px;margin-right:16px}}
+/* reduced motion: no movement; the cards can be scrolled sideways instead */
+@media (prefers-reduced-motion:reduce){.pdv-qmarquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.pdv-qtrack{animation:none}.pdv-qcard.is-copy{display:none}}
+@media (max-width:760px){
+  .pdv-about-top{grid-template-columns:minmax(0,1fr);margin-bottom:36px}
+  .pdv-about-pic{grid-row:1;justify-self:start;height:160px;transform:none}
+  .pdv-about-sec{padding-bottom:32px}
+}
+
+/* About: asterisk centred on the title line; testimonials pause while hovered or focused */
+.pdv-about-h .pdv-acc-ast{margin-top:0}
+.pdv-qmarquee:hover .pdv-qtrack,.pdv-qmarquee:focus-within .pdv-qtrack{animation-play-state:paused}
+.pdv-about .pdv-intro-cols a:not([class*="pdv-to-"]){color:var(--accent);text-decoration-thickness:1.5px;text-underline-offset:.18em;transition:color .3s ease}
+.pdv-about .pdv-intro-cols a:not([class*="pdv-to-"]):hover{color:#1a1a1a}
+.pdv-about .pdv-intro-cols a[class*="pdv-to-"]{text-decoration-thickness:1.5px;text-underline-offset:.18em}
