@@ -170,6 +170,8 @@ body[data-section]{background:var(--tint);transition:background-color .3s ease}
 .pdv-nav a:hover{color:var(--to,var(--accent));text-decoration:underline;text-underline-offset:4px}
 .pdv-nav a[aria-current="page"]{color:var(--accent);font-weight:600}
 .pdv-nav a[aria-current="page"]:hover{color:var(--accent);text-decoration:none}
+body[data-section="home"] .pdv-nav a[aria-current="page"],body[data-section="about"] .pdv-nav a[aria-current="page"],body[data-section="contact"] .pdv-nav a[aria-current="page"]{color:#1a1a1a;font-weight:700}
+body[data-section="home"] .pdv-nav a[aria-current="page"]:hover,body[data-section="about"] .pdv-nav a[aria-current="page"]:hover,body[data-section="contact"] .pdv-nav a[aria-current="page"]:hover{color:#1a1a1a}
 .pdv-main{display:flex;flex-direction:column;min-width:0;padding:72px clamp(24px,6vw,96px) 32px 112px;box-sizing:border-box}
 @media (max-width:1279px){.pdv-main{padding-left:72px}}
 .pdv-prose > :first-child{margin-top:-.3em}
@@ -278,7 +280,7 @@ body[data-section]{background:var(--tint);transition:background-color .3s ease}
 }
 
 /* ---------- Contact form: original design-system style, accent follows the chosen topic ---------- */
-.pdv-oform{position:relative;display:flex;flex-direction:column;gap:18px;max-width:980px;margin-top:8px;color:#1a1a1a;
+.pdv-oform{position:relative;display:flex;flex-direction:column;gap:22px;max-width:980px;margin-top:8px;color:#1a1a1a;
   --pc-green:var(--accent);--pc-green-hover:var(--accent-hover);--pc-green-press:var(--accent-hover);
   --shadow-focus:0 0 0 .5px var(--accent)}
 .pdv-oform a{color:var(--accent)}
@@ -286,7 +288,7 @@ body[data-section]{background:var(--tint);transition:background-color .3s ease}
 .pdv-hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
 .pdv-oselect{display:flex;flex-direction:column;gap:6px;font-family:var(--font-body);color:var(--text-body)}
 .pdv-oselect > span{font-size:var(--fs-body);font-weight:700}
-.pdv-oselect select{box-sizing:border-box;width:100%;margin:0;font:inherit;font-size:var(--fs-body);padding:10px 36px 10px 12px;border:1px solid var(--pc-ink);border-radius:var(--radius-sm);background-color:var(--pc-white);color:inherit;outline:none;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2316170f' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;transition:border-color .3s ease,box-shadow .3s ease}
+.pdv-oselect select{box-sizing:border-box;width:100%;margin:0;font:inherit;font-size:var(--fs-body);padding:10px 36px 10px 12px;border:1px solid #d9d9d9;border-radius:var(--radius-sm);background-color:var(--pc-white);color:inherit;outline:none;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2316170f' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;transition:border-color .3s ease,box-shadow .3s ease}
 .pdv-oselect select:focus{border-color:var(--accent);box-shadow:0 0 0 .5px var(--accent)}
 .pdv-oselect select.is-empty{color:#6e6e6e}
 .pdv-oselect select option{color:#1a1a1a}
@@ -327,10 +329,10 @@ html,body{margin:0;background:#fff}
 /* ---------- Contact form text fields (from the design system's TextField component) ---------- */
 .pdv-tfield{display:flex;flex-direction:column;gap:6px;font-family:var(--font-body);color:var(--text-body)}
 .pdv-tfield > span{font-size:var(--fs-body);font-weight:700}
-.pdv-tfield input,.pdv-tfield textarea{box-sizing:border-box;width:100%;margin:0;font:inherit;font-size:var(--fs-body);padding:10px 12px;border:1px solid var(--pc-ink);border-radius:var(--radius-sm);background:var(--pc-white);color:inherit;outline:none;box-shadow:none;resize:vertical}
+.pdv-tfield input,.pdv-tfield textarea{box-sizing:border-box;width:100%;margin:0;font:inherit;font-size:var(--fs-body);padding:10px 12px;border:1px solid #d9d9d9;border-radius:var(--radius-sm);background:var(--pc-white);color:inherit;outline:none;box-shadow:none;resize:vertical}
 .pdv-tfield input:focus,.pdv-tfield textarea:focus{border-color:var(--accent);box-shadow:0 0 0 .5px var(--accent)}
 .pdv-tfield textarea{min-height:140px}
-.pdv-ogrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.pdv-ogrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px}
 .pdv-oconsent{display:flex;flex-direction:column;gap:8px;max-width:620px}
 .pdv-oconsent label{display:flex;align-items:center;gap:10px;font-size:var(--fs-small);cursor:pointer}
 .pdv-oconsent input[type="checkbox"]{width:20px;height:20px;margin:0;accent-color:var(--accent);flex:none}
