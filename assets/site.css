@@ -286,6 +286,8 @@ body[data-section="home"] .pdv-nav a[aria-current="page"]:hover,body[data-sectio
   --pc-green:var(--accent);--pc-green-hover:var(--accent-hover);--pc-green-press:var(--accent-hover);
   --shadow-focus:0 0 0 .5px var(--accent)}
 .pdv-oform a{color:var(--accent)}
+.pdv-contact-book{margin:0 0 12px;max-width:980px;font-size:var(--fs-body);line-height:1.35;color:#1a1a1a}
+.pdv-contact-book a{color:var(--accent)}
 .pdv-oform button{transition:background-color .3s ease,border-color .3s ease}
 .pdv-hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
 .pdv-oselect{display:flex;flex-direction:column;gap:6px;font-family:var(--font-body);color:var(--text-body)}
@@ -356,6 +358,7 @@ html,body{margin:0;background:#fff}
   .pdv-nav ul{flex-wrap:nowrap;justify-content:space-between;gap:0 10px}
   .pdv-nav a{font-size:15px;white-space:nowrap}
   .pdv-main{padding:28px 20px 20px}
+  .pdv-contact-book{margin-bottom:8px}
   .pdv-footer{padding-top:24px;font-size:13px;gap:6px}
   /* Page transitions: the header stays put; the content fades out, then the new content fades in (no overlap). */
   .pdv-main,.pdv-brand-mark{view-transition-name:none}
