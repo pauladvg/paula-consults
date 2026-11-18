@@ -9,7 +9,7 @@ const FORM_ENDPOINT = 'https://formspree.io/f/mkjokkzn';
 const LANG = (document.documentElement.lang || 'en').slice(0, 2) === 'es' ? 'es' : 'en';
 const TXT = {
   en: { more: 'See what I did', less: 'Show less', fill: 'Please fill this in', email: 'Please enter a valid email', sending: 'Sending...', send: 'Send' },
-  es: { more: 'Ver lo que hice', less: 'Ver menos', fill: 'Rellena este campo', email: 'Introduce un email válido', sending: 'Enviando...', send: 'Enviar' },
+  es: { more: 'Ver mi trabajo', less: 'Ver menos', fill: 'Rellena este campo', email: 'Introduce un email válido', sending: 'Enviando...', send: 'Enviar' },
 }[LANG];
 
 (() => {
