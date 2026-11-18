@@ -425,8 +425,8 @@ html,body{margin:0;background:#fff}
 .pdv-card .pdv-proj:last-child{border-bottom:0}
 .pdv-card .pdv-case-btn{grid-template-columns:minmax(0,1fr) 14px;gap:2px 16px}
 .pdv-card .pdv-case-btn .pdv-proj-title,.pdv-card .pdv-case-btn .pdv-skillline{grid-column:1}
-.pdv-card .pdv-case-btn .pdv-proj-icon{grid-column:2;grid-row:1 / span 2}
-.pdv-card .pdv-case-body .pdv-skillline{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pdv-card .pdv-case-btn .pdv-proj-icon{grid-column:2;grid-row:1 / span 2;align-self:start}
+.pdv-card .pdv-case-body .pdv-skillline{min-width:0;white-space:normal;overflow:visible;text-overflow:clip}
 .pdv-prose .pdv-type-headline[data-typewriter]{font-family:var(--font-body);font-weight:400;font-style:normal;text-transform:none;letter-spacing:0;font-size:inherit;line-height:1.3;color:#1a1a1a;margin-bottom:1em}
 .pdv-tw-strong{font-weight:700}
 .pdv-tw-strong.is-on,.pdv-type-headline strong{color:var(--accent);font-weight:700}
@@ -437,7 +437,7 @@ html,body{margin:0;background:#fff}
 .pdv-cards-lead{max-width:980px;margin:0 0 16px;font-size:var(--fs-small);font-weight:600;color:#666}
 .pdv-cards-lead + .pdv-work{margin-top:0}
 .pdv-card .pdv-case-btn{padding:14px 0}
-.pdv-card .pdv-case-btn .pdv-proj-title{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pdv-card .pdv-case-btn .pdv-proj-title{min-width:0;white-space:normal;overflow:visible;text-overflow:clip}
 /* Cards collapse as a whole: company, role, dates and first sentence show; the rest opens with "See what I did" */
 .pdv-cards{align-items:stretch}
 .pdv-cards.is-any-open{align-items:start}
