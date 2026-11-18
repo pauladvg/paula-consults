@@ -5,6 +5,13 @@
 /* Contact form: messages are sent through Formspree (same form as the previous site). */
 const FORM_ENDPOINT = 'https://formspree.io/f/mkjokkzn';
 
+/* Texts the script writes on the page, per language (<html lang="...">). */
+const LANG = (document.documentElement.lang || 'en').slice(0, 2) === 'es' ? 'es' : 'en';
+const TXT = {
+  en: { more: 'See what I did', less: 'Show less', fill: 'Please fill this in', email: 'Please enter a valid email', sending: 'Sending...', send: 'Send' },
+  es: { more: 'Ver lo que hice', less: 'Ver menos', fill: 'Rellena este campo', email: 'Introduce un email válido', sending: 'Enviando...', send: 'Enviar' },
+}[LANG];
+
 (() => {
   /* ---------- 1. Old one-page links (pauladevega.com/#packages etc.) ---------- */
   const REDIRECTS = {
@@ -15,10 +22,15 @@ const FORM_ENDPOINT = 'https://formspree.io/f/mkjokkzn';
     legal: '/legal/',
     privacy: '/legal/#privacy',
   };
-  if (document.body.dataset.section === 'home') {
+  if (document.body.dataset.section === 'home' && LANG === 'en') {
     const key = (window.location.hash || '').replace(/^#/, '');
     if (REDIRECTS[key]) window.location.replace(REDIRECTS[key]);
   }
+
+  /* ---------- Language toggle: keep ?topic= and #section when switching EN/ES ---------- */
+  document.querySelectorAll('.pdv-lang a:not([aria-current])').forEach(a => {
+    a.href = a.getAttribute('href') + window.location.search + window.location.hash;
+  });
 
   /* ---------- 2. Accordions ---------- */
   function setOpen(item, btn, open) {
@@ -51,7 +63,7 @@ const FORM_ENDPOINT = 'https://formspree.io/f/mkjokkzn';
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       btn.classList.toggle('is-open', open);
       if (panel) panel.classList.toggle('is-open', open);
-      if (label) label.textContent = open ? 'Show less' : 'See what I did';
+      if (label) label.textContent = open ? TXT.less : TXT.more;
       if (grid) grid.classList.toggle('is-any-open', !!grid.querySelector('.pdv-card-toggle[aria-expanded="true"]'));
     });
   });
@@ -116,7 +128,7 @@ const FORM_ENDPOINT = 'https://formspree.io/f/mkjokkzn';
       if (box) box.classList.toggle('is-missing', on);
       if (msg) {
         msg.hidden = !on;
-        if (k === 'email') msg.textContent = fields.email.value.trim() ? 'Please enter a valid email' : 'Please fill this in';
+        if (k === 'email') msg.textContent = fields.email.value.trim() ? TXT.email : TXT.fill;
       }
     }
     let tried = false;
@@ -152,11 +164,11 @@ const FORM_ENDPOINT = 'https://formspree.io/f/mkjokkzn';
       sending = true;
       errorBox.hidden = true;
       sendBtn.classList.add('is-sending');
-      sendText.textContent = 'Sending...';
+      sendText.textContent = TXT.sending;
       try {
         const label = TOPICS[fields.topic.value];
         const data = new FormData();
-        data.append('_subject', '[' + label + '] New message from ' + name);
+        data.append('_subject', '[' + label + (LANG === 'es' ? ' · ES' : '') + '] New message from ' + name);
         data.append('topic', label);
         data.append('name', name);
         data.append('email', fields.email.value.trim());
@@ -171,7 +183,7 @@ const FORM_ENDPOINT = 'https://formspree.io/f/mkjokkzn';
       } finally {
         sending = false;
         sendBtn.classList.remove('is-sending');
-        sendText.textContent = 'Send';
+        sendText.textContent = TXT.send;
       }
     });
   }
