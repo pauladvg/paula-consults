@@ -591,3 +591,5 @@ body[data-section="consulting"] .pdv-acc-title{font-size:clamp(18px,calc(2.5cqi 
 @media (max-width:400px){ html[lang="es"] .pdv-nav ul{gap:0 5px} html[lang="es"] .pdv-nav a{font-size:13px} }
 @media (max-width:370px){ html[lang="es"] .pdv-nav ul{gap:0 4px} html[lang="es"] .pdv-nav a{font-size:12px} }
 @media (max-width:345px){ .pdv-nav ul{flex-wrap:wrap;row-gap:6px} }
+/* More space between the menu and the EN / ES toggle (desktop sidebar) */
+@media (min-width:761px){ .pdv-lang{margin-top:28px} }
