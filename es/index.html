@@ -25,8 +25,8 @@
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=2">
   <link rel="apple-touch-icon" href="/assets/brand-asterisk.png">
   <link rel="preload" href="/assets/inclusive-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/site.css?v=21">
-  <script src="/assets/site.js?v=7" defer></script>
+  <link rel="stylesheet" href="/assets/site.css?v=22">
+  <script src="/assets/site.js?v=8" defer></script>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -63,6 +63,7 @@
   ]
 }
   </script>
+  <script>try{if(!sessionStorage.getItem("pdv-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("pdv-intro-pending")}catch(e){}</script>
 </head>
 <body data-section="home">
 <div class="pdv-site" data-section="home">
@@ -70,7 +71,6 @@
     <a class="pdv-brand" href="/es/"><span class="pdv-brand-mark" aria-hidden="true"></span><span class="pdv-brand-name">Paula<br>de Vega</span></a>
     <nav class="pdv-nav" aria-label="Principal">
       <ul>
-        <li><a class="pdv-to-home" href="/es/" aria-current="page">Inicio</a></li>
         <li><a class="pdv-to-about" href="/es/sobre-mi/">Sobre mí</a></li>
         <li><a class="pdv-to-product" href="/es/producto/">Producto</a></li>
         <li><a class="pdv-to-consulting" href="/es/consultoria/">Consultoría</a></li>
@@ -82,7 +82,7 @@
   </aside>
   <main class="pdv-main">
     <div class="pdv-prose">
-      <h1>Me llamo Paula y soy muchas cosas. Compaginar varios intereses a la vez es una habilidad que he intentado dominar durante toda mi carrera, con la esperanza de llegar a ser lo más transdisciplinar posible.</h1>
+      <h1><span class="pdv-intro-first">Me llamo Paula y soy muchas cosas.</span><span class="pdv-intro-rest"> Compaginar varios intereses a la vez es una habilidad que he intentado dominar durante toda mi carrera, con la esperanza de llegar a ser lo más transdisciplinar posible.</span></h1>
       <p>Soy product manager y consultora. Pero también soy músico, interesada en la ciberseguridad, cinéfila, buena cocinera y viajera empedernida. Y también filóloga, así que si conoces la metáfora de la higuera de Sylvia Plath, entenderás por qué nunca he creído que elegir uno de los higos signifique renunciar a los demás.</p>
       <p>Aquí puedes encontrar mi trabajo en <a class="pdv-to-product" href="/es/producto/">producto</a> y <a class="pdv-to-consulting" href="/es/consultoria/">consultoría</a>. No son todos mis higos, pero sí algunos. Si algo te llama la atención, ya sabes <a href="/es/contacto/">dónde encontrarme</a>.</p>
     </div>

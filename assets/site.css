@@ -599,3 +599,58 @@ body[data-section="consulting"] .pdv-acc-title{font-size:clamp(18px,calc(2.5cqi 
 @media (max-width:345px){ .pdv-nav ul{flex-wrap:wrap;row-gap:6px} }
 /* More space between the menu and the EN / ES toggle (desktop sidebar) */
 @media (min-width:761px){ .pdv-lang{margin-top:28px} }
+
+/* Five menu items (Home removed, the logo links home): normal size again on phones */
+@media (max-width:420px){
+  .pdv-nav ul, html[lang="es"] .pdv-nav ul{gap:0 10px}
+  .pdv-nav a, html[lang="es"] .pdv-nav a{font-size:15px}
+}
+@media (max-width:370px){
+  .pdv-nav ul, html[lang="es"] .pdv-nav ul{gap:0 8px}
+  .pdv-nav a, html[lang="es"] .pdv-nav a{font-size:14px}
+}
+@media (max-width:345px){ .pdv-nav a, html[lang="es"] .pdv-nav a{font-size:13px} }
+@media (max-width:400px) and (min-width:371px){ html[lang="es"] .pdv-nav ul{gap:0 8px} html[lang="es"] .pdv-nav a{font-size:14px} }
+
+/* ---------- Homepage intro (first visit per session) ---------- */
+.pdv-intro-ghost{position:fixed;z-index:50;color:#1a1a1a;transform-origin:0 0;pointer-events:none;text-wrap:pretty}
+.pdv-intro-caret{display:inline-block;width:.06em;height:.95em;margin-left:.06em;vertical-align:-.12em;background:#1a1a1a;animation:pdv-intro-blink .9s steps(1) infinite}
+@keyframes pdv-intro-blink{50%{opacity:0}}
+/* while pending/playing: the real text keeps its space but stays invisible */
+.pdv-intro-pending body[data-section="home"] .pdv-prose,
+.pdv-intro-pending body[data-section="home"] .pdv-footer{opacity:0;animation:pdv-intro-failsafe .01s 4s forwards}
+@keyframes pdv-intro-failsafe{to{opacity:1}}
+/* reveal: first sentence appears at once, the rest fades in from a soft blur */
+.pdv-intro-reveal body[data-section="home"] .pdv-prose,
+.pdv-intro-reveal body[data-section="home"] .pdv-footer{opacity:1;animation:none}
+.pdv-intro-reveal body[data-section="home"] .pdv-intro-rest,
+.pdv-intro-reveal body[data-section="home"] .pdv-prose > p,
+.pdv-intro-reveal body[data-section="home"] .pdv-footer{animation:pdv-intro-in .8s cubic-bezier(.2,.7,.2,1) both}
+.pdv-intro-reveal body[data-section="home"] .pdv-prose > p:nth-of-type(1){animation-delay:.08s}
+.pdv-intro-reveal body[data-section="home"] .pdv-prose > p:nth-of-type(2){animation-delay:.16s}
+.pdv-intro-reveal body[data-section="home"] .pdv-footer{animation-delay:.24s}
+@keyframes pdv-intro-in{from{opacity:0;filter:blur(6px);transform:translateY(6px)}to{opacity:1;filter:none;transform:none}}
+.pdv-intro-rest{display:inline}
+@media (prefers-reduced-motion:reduce){.pdv-intro-ghost{display:none}}
+
+/* ---------- Underline wiggle on in-text links (once per hover / keyboard focus) ---------- */
+@keyframes pdv-underline-wiggle{
+  0%  {text-underline-offset:.18em;text-decoration-style:solid}
+  15% {text-underline-offset:.3em;text-decoration-style:wavy}
+  40% {text-underline-offset:.12em;text-decoration-style:wavy}
+  65% {text-underline-offset:.24em;text-decoration-style:wavy}
+  100%{text-underline-offset:.18em;text-decoration-style:solid}
+}
+@media (prefers-reduced-motion:no-preference){
+  .pdv-prose a:hover, .pdv-prose a:focus-visible,
+  .pdv-intro-cols a:hover, .pdv-intro-cols a:focus-visible,
+  .pdv-article p a:hover, .pdv-article p a:focus-visible,
+  .pdv-author a:hover, .pdv-author a:focus-visible{animation:pdv-underline-wiggle .45s ease-out 1}
+}
+.pdv-intro-first-in body[data-section="home"] .pdv-prose{opacity:1;animation:none}
+.pdv-intro-first-in body[data-section="home"] .pdv-intro-rest,
+.pdv-intro-first-in body[data-section="home"] .pdv-prose > p{opacity:0}
+.pdv-intro-first-in body[data-section="home"] .pdv-intro-first{animation:pdv-intro-fade .35s ease .35s both}
+@keyframes pdv-intro-fade{from{opacity:0}to{opacity:1}}
+.pdv-intro-reveal body[data-section="home"] .pdv-intro-rest,
+.pdv-intro-reveal body[data-section="home"] .pdv-prose > p{opacity:1}
