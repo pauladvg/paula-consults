@@ -193,7 +193,7 @@ const TXT = {
      aria-hidden and fully laid out from the start, so nothing moves while it types.
      It types for everyone (typing isn't on-screen movement); for visitors who asked their device
      for less motion, the cursor just doesn't blink. It types again when a page is restored with Back. */
-  const START = 600, STEP = 95, PAUSE = 500;
+  const START = 400, STEP = 60, PAUSE = 350;
   const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const typers = [];
   document.querySelectorAll('[data-typewriter]').forEach(el => {
@@ -248,100 +248,108 @@ const TXT = {
   window.addEventListener('pageshow', e => { if (e.persisted) typers.forEach(run => run()); });
 })();
 
-/* ---------- 5. Homepage intro (first visit per session) ----------
+/* ---------- 5. Homepage intro ----------
    The first sentence types in large letters in the middle of the screen,
-   glides into its place, then the rest of the text fades in.
-   Any click, tap, scroll or key press skips straight to the end.
+   glides into its place, then the rest of the text fades in. It plays on every visit to Home
+   (also after Back); any click, tap, scroll or key press skips straight to the end.
    The <head> of the homepage adds .pdv-intro-pending before the first paint. */
 (() => {
   const root = document.documentElement;
-  if (!root.classList.contains('pdv-intro-pending')) return;
   const first = document.querySelector('.pdv-intro-first');
   const h1 = first && first.closest('h1');
-  const done = () => { root.classList.remove('pdv-intro-pending', 'pdv-intro-playing'); root.classList.add('pdv-intro-done'); };
-  if (!first || !h1) { done(); return; }
-  try { sessionStorage.setItem('pdv-intro', '1'); } catch (e) {}
+  if (!first || !h1) { root.classList.remove('pdv-intro-pending'); return; }
+  const reduce = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const EVENTS = ['pointerdown', 'keydown', 'wheel', 'touchstart'];
+  let stop = null;
 
-  const text = first.textContent;
-  const cs = getComputedStyle(h1);
-  const box = h1.getBoundingClientRect();
-  const firstBox = first.getClientRects()[0];
-  const oneLine = first.getClientRects().length === 1;     // desktop: the sentence fits on one line
-  const vw = window.innerWidth, vh = window.innerHeight;
-  const region = vw - box.left - 32;                       // free space to the right of the sidebar
-  const fs = parseFloat(cs.fontSize), lh = parseFloat(cs.lineHeight) || fs * 1.45;
-  // how much bigger the typed line is: as big as fits, up to 2.2x on desktop, 1.4x on phones
-  const k = oneLine ? Math.max(1, Math.min(2.2, (region * 0.92) / firstBox.width))
-                    : Math.max(1, Math.min(1.4, 46 / fs));
+  const play = () => {
+    if (stop) stop();
+    root.classList.remove('pdv-intro-reveal', 'pdv-intro-first-in', 'pdv-intro-done');
+    if (reduce()) { root.classList.remove('pdv-intro-pending'); return; }
+    root.classList.add('pdv-intro-pending');
 
-  const ghost = document.createElement('div');
-  ghost.className = 'pdv-intro-ghost';
-  ghost.setAttribute('aria-hidden', 'true');
-  Object.assign(ghost.style, {
-    fontFamily: cs.fontFamily, fontWeight: cs.fontWeight, letterSpacing: cs.letterSpacing,
-    fontSize: fs * k + 'px', lineHeight: lh * k + 'px',
-    whiteSpace: oneLine ? 'nowrap' : 'normal',
-    width: oneLine ? 'auto' : Math.min(vw - 2 * box.left, box.width * k) + 'px',
-  });
-  const typed = document.createElement('span');
-  const caret = document.createElement('span');
-  caret.className = 'pdv-intro-caret';
-  ghost.append(typed, caret);
-  // measure the final size, then centre the ghost in the free area
-  typed.textContent = text;
-  document.body.appendChild(ghost);
-  const gb = ghost.getBoundingClientRect();
-  typed.textContent = '';
-  const startLeft = oneLine ? box.left + Math.max(0, (region - gb.width) / 2) : box.left;
-  const startTop = Math.max(0, (vh - gb.height) / 2);
-  ghost.style.left = startLeft + 'px';
-  ghost.style.top = startTop + 'px';
-  root.classList.add('pdv-intro-playing');
+    const text = first.textContent;
+    const cs = getComputedStyle(h1);
+    const box = h1.getBoundingClientRect();
+    const firstBox = first.getClientRects()[0];
+    const oneLine = first.getClientRects().length === 1;     // desktop: the sentence fits on one line
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const region = vw - box.left - 32;                       // free space to the right of the sidebar
+    const fs = parseFloat(cs.fontSize), lh = parseFloat(cs.lineHeight) || fs * 1.45;
+    const k = oneLine ? Math.max(1, Math.min(2.2, (region * 0.92) / firstBox.width))
+                      : Math.max(1, Math.min(1.4, 46 / fs));
 
-  let finished = false, timers = [];
-  const later = (fn, ms) => timers.push(setTimeout(fn, ms));
-  const finish = () => {
-    if (finished) return;
-    finished = true;
-    timers.forEach(clearTimeout);
-    ghost.remove();
-    done();
-    ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(ev => window.removeEventListener(ev, finish, true));
-  };
-  ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(ev => window.addEventListener(ev, finish, { capture: true, passive: true }));
+    const ghost = document.createElement('div');
+    ghost.className = 'pdv-intro-ghost';
+    ghost.setAttribute('aria-hidden', 'true');
+    Object.assign(ghost.style, {
+      fontFamily: cs.fontFamily, fontWeight: cs.fontWeight, letterSpacing: cs.letterSpacing,
+      fontSize: fs * k + 'px', lineHeight: lh * k + 'px',
+      whiteSpace: oneLine ? 'nowrap' : 'normal',
+      width: oneLine ? 'auto' : Math.min(vw - 2 * box.left, box.width * k) + 'px',
+    });
+    const typed = document.createElement('span');
+    const caret = document.createElement('span');
+    caret.className = 'pdv-intro-caret';
+    ghost.append(typed, caret);
+    typed.textContent = text;
+    document.body.appendChild(ghost);
+    const gb = ghost.getBoundingClientRect();
+    typed.textContent = '';
+    const startLeft = oneLine ? box.left + Math.max(0, (region - gb.width) / 2) : box.left;
+    const startTop = Math.max(0, (vh - gb.height) / 2);
+    ghost.style.left = startLeft + 'px';
+    ghost.style.top = startTop + 'px';
+    root.classList.add('pdv-intro-playing');
 
-  // 1. type (a little slower after commas and full stops)
-  let i = 0;
-  const step = () => {
-    if (finished) return;
-    typed.textContent = text.slice(0, ++i);
-    if (i < text.length) {
-      const ch = text[i - 1];
-      later(step, ch === ',' ? 220 : ch === '.' ? 260 : 32 + Math.random() * 22);
-    } else {
-      later(glide, 380);
-    }
-  };
-  // 2. glide into place (the real heading's position, scaled back to normal size)
-  const glide = () => {
-    if (finished) return;
-    caret.remove();
-    const end = first.getClientRects()[0];
-    const dx = end.left - startLeft, dy = (end.top - (lh - end.height) / 2) - startTop;
-    ghost.style.transition = 'transform .7s cubic-bezier(.65,0,.25,1), opacity .35s ease .35s';
-    ghost.style.transform = `translate(${dx}px, ${dy}px) scale(${1 / k})`;
-    if (!oneLine) {                         // phones: the line breaks differently, so cross-fade
+    let finished = false;
+    const timers = [];
+    const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      timers.forEach(clearTimeout);
+      ghost.remove();
+      root.classList.remove('pdv-intro-pending', 'pdv-intro-playing');
+      root.classList.add('pdv-intro-done');
+      EVENTS.forEach(ev => window.removeEventListener(ev, finish, true));
+      stop = null;
+    };
+    stop = finish;
+    EVENTS.forEach(ev => window.addEventListener(ev, finish, { capture: true, passive: true }));
+
+    // 1. type (a little slower after commas and full stops)
+    let i = 0;
+    const step = () => {
+      typed.textContent = text.slice(0, ++i);
+      if (i < text.length) {
+        const ch = text[i - 1];
+        later(step, ch === ',' ? 200 : ch === '.' ? 240 : 30 + Math.random() * 20);
+      } else {
+        later(glide, 350);
+      }
+    };
+    // 2. glide into place
+    const glide = () => {
+      caret.remove();
+      const end = first.getClientRects()[0];
+      const dx = end.left - startLeft, dy = (end.top - (lh - end.height) / 2) - startTop;
+      ghost.style.transition = 'transform .75s cubic-bezier(.65,0,.25,1), opacity .4s ease .35s';
+      ghost.style.transform = `translate(${dx}px, ${dy}px) scale(${1 / k})`;
+      if (!oneLine) { ghost.style.opacity = '0'; root.classList.add('pdv-intro-first-in'); }
+      later(reveal, 760);
+    };
+    // 3. the real text takes over: typed line cross-fades out, the rest fades in
+    const reveal = () => {
+      root.classList.add('pdv-intro-reveal');
+      ghost.style.transition = 'opacity .25s ease';
       ghost.style.opacity = '0';
-      root.classList.add('pdv-intro-first-in');
-    }
-    later(reveal, 720);
+      later(finish, 1300);
+    };
+    later(step, 300);
   };
-  // 3. show the real text: the first sentence instantly, the rest fades in
-  const reveal = () => {
-    if (finished) return;
-    root.classList.add('pdv-intro-reveal');
-    ghost.remove();
-    later(finish, 900);
-  };
-  later(step, 350);
+
+  play();
+  // Back/Forward can restore the page from memory without reloading it: play again.
+  window.addEventListener('pageshow', e => { if (e.persisted) play(); });
 })();

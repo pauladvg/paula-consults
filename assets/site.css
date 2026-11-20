@@ -654,3 +654,15 @@ body[data-section="consulting"] .pdv-acc-title{font-size:clamp(18px,calc(2.5cqi 
 @keyframes pdv-intro-fade{from{opacity:0}to{opacity:1}}
 .pdv-intro-reveal body[data-section="home"] .pdv-intro-rest,
 .pdv-intro-reveal body[data-section="home"] .pdv-prose > p{opacity:1}
+/* Smoother intro hand-off: plain opacity fade (no blur), a little slower */
+.pdv-intro-ghost{will-change:transform,opacity}
+@keyframes pdv-intro-in{from{opacity:0}to{opacity:1}}
+.pdv-intro-reveal body[data-section="home"] .pdv-intro-rest,
+.pdv-intro-reveal body[data-section="home"] .pdv-prose > p,
+.pdv-intro-reveal body[data-section="home"] .pdv-footer{animation:pdv-intro-in 1s cubic-bezier(.25,.1,.25,1) both}
+.pdv-intro-reveal body[data-section="home"] .pdv-prose > p:nth-of-type(1){animation-delay:.12s}
+.pdv-intro-reveal body[data-section="home"] .pdv-prose > p:nth-of-type(2){animation-delay:.24s}
+.pdv-intro-reveal body[data-section="home"] .pdv-footer{animation-delay:.36s}
+/* once finished, nothing keeps animating */
+.pdv-intro-done body[data-section="home"] .pdv-prose,.pdv-intro-done body[data-section="home"] .pdv-footer,
+.pdv-intro-done body[data-section="home"] .pdv-intro-rest,.pdv-intro-done body[data-section="home"] .pdv-prose > p{opacity:1}
