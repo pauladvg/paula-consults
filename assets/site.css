@@ -666,3 +666,18 @@ body[data-section="consulting"] .pdv-acc-title{font-size:clamp(18px,calc(2.5cqi 
 /* once finished, nothing keeps animating */
 .pdv-intro-done body[data-section="home"] .pdv-prose,.pdv-intro-done body[data-section="home"] .pdv-footer,
 .pdv-intro-done body[data-section="home"] .pdv-intro-rest,.pdv-intro-done body[data-section="home"] .pdv-prose > p{opacity:1}
+
+/* ---------- Link hover: soft highlighter (replaces the underline wiggle) ----------
+   A light tint of the link's own colour sweeps in behind the word. */
+.pdv-prose a, .pdv-intro-cols a, .pdv-article p a, .pdv-author a{
+  background-image:linear-gradient(rgba(95,95,95,.14),rgba(95,95,95,.14));
+  background-image:linear-gradient(color-mix(in srgb,currentColor 14%,transparent),color-mix(in srgb,currentColor 14%,transparent));
+  background-repeat:no-repeat;background-position:0 88%;background-size:0 45%;
+  transition:color .3s ease,background-size .35s ease}
+.pdv-prose a:hover, .pdv-prose a:focus-visible,
+.pdv-intro-cols a:hover, .pdv-intro-cols a:focus-visible,
+.pdv-article p a:hover, .pdv-article p a:focus-visible,
+.pdv-author a:hover, .pdv-author a:focus-visible{animation:none;background-size:100% 45%}
+@media (prefers-reduced-motion:reduce){
+  .pdv-prose a, .pdv-intro-cols a, .pdv-article p a, .pdv-author a{transition:color .3s ease}
+}
